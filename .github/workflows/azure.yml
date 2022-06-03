@@ -47,6 +47,6 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: using curl installing azure
-        run: sudo curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+        run: curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
       - name: check azure version
         run: az --version
