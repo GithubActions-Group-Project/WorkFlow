@@ -25,8 +25,16 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
+      - name: installing wget
+        run: sudo apt-get update 
+      - name: wget
+        run: sudo apt-get install -y wget apt-transport-https software-properties-common
+      - name: update
+        run: sudo wget -q https://packages.microsoft.com/config/ubuntu/latest/packages-microsoft-prod.deb
       - name: installing dpkg
         run: sudo dpkg -i packages-microsoft-prod.deb 
+      - name: update
+        run: sudo apt-get update
       # Runs a single command using the runners shell
       - name: Installing curl
         run: sudo apt-get install curl -y
