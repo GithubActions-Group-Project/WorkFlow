@@ -25,12 +25,12 @@ jobs:
       # Runs a single command using the runners shell
       - name: Installing PowerShell on ubuntu
         run: |
-          apt-get update,
-          apt-get install -y wget apt-transport-https software-properties-common,
-          wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb,
-          dpkg -i packages-microsoft-prod.deb,
-          apt-get update,
-          add-apt-repository universe,
+          echo apt-get update
+          apt-get install -y wget apt-transport-https software-properties-common
+          wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
+          dpkg -i packages-microsoft-prod.deb
+          apt-get update
+          add-apt-repository universe
           apt-get install -y powershell 
 
       # Runs a set of commands using the runners shell
