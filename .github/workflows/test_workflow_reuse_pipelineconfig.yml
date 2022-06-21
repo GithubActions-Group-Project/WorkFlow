@@ -1,15 +1,7 @@
 name: testing reusabe workflows-grafana
 on:
-  workflow_call:
-    inputs:
-      name: grafana
-      required: true
-      type: string
-    secrets:
-      registry_username: admin
-      required: true
-      registry_password: admin
-      required: true
+   push:
+     branches: [ "main" ]
       
 jobs:
   build:
