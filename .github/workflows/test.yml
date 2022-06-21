@@ -45,5 +45,5 @@ jobs:
         run: |
           sudo systemctl daemon-reload
           sudo systemctl start mongod
-      - shell: sh
-        run: mongosh show dbs
+          sudo systemctl restart mongod
+          sudo mongosh show dbs
