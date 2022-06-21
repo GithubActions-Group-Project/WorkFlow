@@ -36,4 +36,4 @@ jobs:
       - name: testing python
         run: python --version
       - name: python files
-        run: python .\workflows\InsertingDBIntoProject.py
+        run: python ./workflows/InsertingDBIntoProject.py
