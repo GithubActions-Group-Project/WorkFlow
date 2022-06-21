@@ -1,7 +1,6 @@
 name: testing reusabe workflows-grafana
 on:
-   push:
-     branches: [ "main" ]
+ workflow_dispatch:
       
 jobs:
   build:
