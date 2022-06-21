@@ -37,6 +37,8 @@ jobs:
       - name: testing powershell
         run: pwsh -command 'Invoke-WebRequest -Uri "https://github.com/chaithragudimalla/WorkFlow/blob/main/.github/workflows/pro1.py" -OutFile "pro1.py"'
       - name: locating file
-        run: ls 
+        run: |
+          ls -l
+          find pro1.py
       - name: viewing the contents of the file
         run: cat pro1.py
