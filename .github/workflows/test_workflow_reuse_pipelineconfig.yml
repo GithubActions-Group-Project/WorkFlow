@@ -1,4 +1,4 @@
-name: testing reusabe workflows-grafana
+name: testing reusabe workflows grafana
 
 on:
  push:
