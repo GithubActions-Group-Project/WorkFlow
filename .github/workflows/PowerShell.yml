@@ -38,5 +38,3 @@ jobs:
         run: pwsh -command 'Invoke-WebRequest -Uri "https://github.com/chaithragudimalla/WorkFlow/blob/main/.github/workflows/pro1.txt" -OutFile "pro1.txt"'
       - name: locating file
         run: ls -l
-      - name: viewing the contents of the file
-        run: cat pro1.txt
