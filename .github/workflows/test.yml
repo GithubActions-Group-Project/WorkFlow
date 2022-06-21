@@ -45,4 +45,5 @@ jobs:
         run: |
           sudo systemctl daemon-reload
           sudo systemctl start mongod
-          sudo systemctl status mongod
+      - shell: mongo
+        run: show dbs
