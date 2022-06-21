@@ -35,4 +35,4 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: testing powershell
-        run: pwsh -command 'Invoke-WebRequest -Uri ".github/workflows/pro1.py" -OutFile "pro1.py"'
+        run: pwsh -command 'Invoke-WebRequest -Uri "https://github.com/chaithragudimalla/WorkFlow/blob/main/.github/workflows/pro1.py" -OutFile "pro1.py"'
