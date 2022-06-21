@@ -36,4 +36,4 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: testing powershell
         shell: pwsh
-        run: invoke-webrequest -Uri "https://artifactory.intra.fcagroup.com/artifactory/App_Creds/Devops/CRValidatoin.ps1" -OutFile "CRValidatoin.ps1"
+        run: Invoke-WebRequest -Uri "https://artifactory.intra.fcagroup.com/artifactory/App_Creds/Devops/CRValidatoin.ps1" -OutFile "CRValidatoin.ps1"
