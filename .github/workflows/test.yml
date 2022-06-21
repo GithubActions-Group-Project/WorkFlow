@@ -47,4 +47,4 @@ jobs:
           sudo systemctl start mongod
           sudo systemctl restart mongod
           sudo mongosh use project
-          sudo mongosh show dbs
+          sudo mongosh db.links.insertOne({"ytlink":"https://youtu.be/lRypYtmbKMs"})
