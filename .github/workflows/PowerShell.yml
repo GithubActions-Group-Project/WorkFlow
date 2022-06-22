@@ -33,7 +33,7 @@ jobs:
           sudo apt-get install -y powershell 
       # Runs a set of commands using the runners shell
       - name: testing powershell
-        run: pwsh -command 'Invoke-WebRequest -Uri "https://github.com/chaithragudimalla/WorkFlow/main.py" -OutFile "main.py"'
+        run: pwsh -command 'Invoke-WebRequest -Uri "https://github.com/chaithragudimalla/WorkFlow/blob/main/main.py" -OutFile "main.py"'
       - name: installing python
         run: |
            sudo apt-get update
