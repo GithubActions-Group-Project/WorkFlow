@@ -34,13 +34,10 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: testing powershell
         run: pwsh -command 'Invoke-WebRequest -Uri "https://github.com/chaithragudimalla/WorkFlow/blob/main/main.py" -OutFile "main.py"'
-      - name: installing python
-        run: |
-           sudo apt-get update
-           sudo apt-get install software-properties-common
-           sudo add-apt-repository ppa:deadsnakes/ppa
-           sudo apt-get update
-           sudo apt-get install python3
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
       - name: Installing pip and other modules
         run: |
            pip install pafy
