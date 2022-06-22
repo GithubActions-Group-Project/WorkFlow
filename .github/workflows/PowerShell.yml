@@ -44,6 +44,7 @@ jobs:
            pip install youtube-dl
            pip install python-vlc
       - name: running python script
+        uses: jannekem/run-python-script-action@v1
+      - name: run python script
         run: |
-          cd /home/runner/work/WorkFlow/WorkFlow
-          cat main.py
+          python main.py
