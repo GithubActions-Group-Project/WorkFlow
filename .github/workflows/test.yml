@@ -48,3 +48,4 @@ jobs:
           sudo systemctl restart mongod
           sudo mongosh use project
           sudo mongosh db.links.insertOne({"ytlink":"https://youtu.be/lRypYtmbKMs"})
+          sudo mongosh db.links.find({})
