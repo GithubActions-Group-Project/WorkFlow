@@ -48,6 +48,6 @@ jobs:
           sudo systemctl restart mongod
           cd /home/runners/
           ls -l
-        #  sudo mongosh use project
+          sudo mongosh use project
         #  sudo mongosh db.links.insertOne({"ytlink":"https://youtu.be/lRypYtmbKMs"})
         #  sudo mongosh db.links.find({})
