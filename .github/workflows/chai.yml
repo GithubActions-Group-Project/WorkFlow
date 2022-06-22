@@ -22,8 +22,7 @@ jobs:
     with:
        file_name: main.py
     secrets:
-       registry_username: ${{secrets.REGISTRY_USERNAME}}
-       registry_password: ${{secrets.REGISTRY_PASSWORD}}
+       credentials: ${{secrets.GIT_CREDENTIAL}}
   build:
     runs-on: ubuntu-latest
     
