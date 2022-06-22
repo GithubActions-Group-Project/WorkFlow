@@ -21,6 +21,7 @@ jobs:
     uses: chaithragudimalla/WorkFlow/.github/workflows/calling_workflows.yml@main
     with:
        file_name: main.py
+    secrets:
        registry_username: ${{secrets.REGISTRY_USERNAME}}
        registry_password: ${{secrets.REGISTRY_PASSWORD}}
   build:
