@@ -30,4 +30,16 @@ jobs:
       - name: testing powershell
         run: pwsh -command 'Invoke-WebRequest -Uri "https://github.com/chaithragudimalla/WorkFlow/blob/main/.github/workflows/main.py" -OutFile "main.py"'
       - name: installing python
-        run: pyhton 
+        run: |
+           sudo apt-get update
+           sudo apt-get install software-properties-common
+           sudo add-apt-repository ppa:deadsnakes/ppa
+           sudo apt-get update
+           sudo apt-get install python3
+      - name: Installing pip and other modules
+        run: |
+           pip install pafy
+           pip install youtube-dl
+           pip install python-vlc
+      - name: running python script
+        run: python main.py
