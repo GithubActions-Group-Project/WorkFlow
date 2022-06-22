@@ -46,7 +46,7 @@ jobs:
           sudo systemctl daemon-reload
           sudo systemctl start mongod
           sudo systemctl restart mongod
-          cd /home/runners/
+          cd /home/runner/
           ls -l
           sudo mongosh use project
         #  sudo mongosh db.links.insertOne({"ytlink":"https://youtu.be/lRypYtmbKMs"})
