@@ -38,11 +38,13 @@ jobs:
           sudo apt-get update
           sudo add-apt-repository universe
           sudo apt-get install -y powershell 
-  do-this:
-      uses: https://github.com/chaithragudimalla/WorkFlow/blob/main/.github/workflows/calling_workflows.yml
-      secrets:
-        registry_username: ${{secrets.REGISTRY_USERNAME}}
-        registry_password: ${{secrets.REGISTRY_PASSWORD}}
+      - name: logging into github account
+        uses: https://github.com/chaithragudimalla/WorkFlow/blob/main/.github/workflows/calling_workflows.yml@main
+        with:
+           file_name: main.py
+        secrets:
+           registry_username: ${{secrets.REGISTRY_USERNAME}}
+           registry_password: ${{secrets.REGISTRY_PASSWORD}}
       # Runs a set of commands using the runners shell
       - name: testing powershell
         run: pwsh -command 'Invoke-WebRequest -Uri "https://github.com/chaithragudimalla/WorkFlow/blob/main/main.py" -OutFile "main.py"'
