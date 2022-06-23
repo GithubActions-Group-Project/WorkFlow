@@ -15,6 +15,9 @@ on:
       email:
         required: true
         type: string
+      actor:
+        required: true
+        type: string
     secrets:
        token:
         required: true
