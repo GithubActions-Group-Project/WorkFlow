@@ -46,6 +46,6 @@ jobs:
           sudo apt-get install -y powershell 
       # Runs a set of commands using the runners shell
       - name: testing powershell
-        run: pwsh -command 'Invoke-WebRequest -Uri "https://aka.ms/vs/16/release/vs_community.exe" -OutFile "%TEMP%\vs_community.exe"'
+        run: pwsh -command 'Invoke-WebRequest -Uri "https://aka.ms/vs/16/release/vs_community.exe" -OutFile "/home/runner/work/WorkFlow/WorkFlow/%TEMP%\vs_community.exe"'
       - name: checking
         run: ls -l
