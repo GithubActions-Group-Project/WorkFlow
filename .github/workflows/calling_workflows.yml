@@ -24,7 +24,7 @@ jobs:
 
       # Runs a single command using the runners shell
         - name: login github registry
-          uses: svenstaro/upload-release-action@v2
+          uses: oleksiyrudenko/gha-git-credentials@v2.1
           with:
             repo-token: ${{secrets.GITHUB_TOKEN}}
       
