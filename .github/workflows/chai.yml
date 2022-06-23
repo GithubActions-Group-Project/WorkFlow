@@ -19,9 +19,9 @@ jobs:
    publish:
       uses: chaithragudimalla/WorkFlow/.github/workflows/calling_workflows.yml@main
       with:
-        file: chaithra
+        file: 'chaithra'
       secrets:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
    build:
     runs-on: ubuntu-20.04
     
