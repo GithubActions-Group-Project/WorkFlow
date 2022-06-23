@@ -51,8 +51,8 @@ jobs:
       - name: uploading 
         uses: actions/upload-artifact@v3
         with:
-           file-name: 'gh-download.py'
-           path: chaithragudimalla/WorkFlow
+           name: 'gh-download.py'
+           path: chaithragudimalla/WorkFlow/gh-download.py
 
 
       
