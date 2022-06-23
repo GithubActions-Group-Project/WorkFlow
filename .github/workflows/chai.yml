@@ -16,15 +16,18 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  do-it:
+  publish:
     # The type of runner that the job will run on
     uses: chaithragudimalla/WorkFlow/.github/workflows/calling_workflows.yml@main
     with:
-       file_name: main.py
+       global: true
+       name: 'Chaithra Sai Gudimalla'
+       email: 'gudimallasai6@gmail.com'
+       actor: 'chaithragudimalla'
     secrets:
-       credentials: ${{secrets.GIT_CREDENTIAL}}
+       token: ${{secrets.GIT_CREDENTIAL}}
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -35,7 +38,7 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
 
-      - name: Installing PowerShell on ubuntu
+      - name: Installing PowerShell on ubuntu (CD publishing)
         run: |
           sudo apt-get update
           sudo apt-get install -y wget apt-transport-https software-properties-common
