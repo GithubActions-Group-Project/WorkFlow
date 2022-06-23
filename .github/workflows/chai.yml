@@ -20,12 +20,9 @@ jobs:
     # The type of runner that the job will run on
     uses: chaithragudimalla/WorkFlow/.github/workflows/calling_workflows.yml@main
     with:
-       global: true
        name: 'Chaithra Sai Gudimalla'
-       email: 'gudimallasai6@gmail.com'
-       actor: 'chaithragudimalla'
     secrets:
-       repo-token: ${{secrets.GIT_CREDENTIAL}}
+       repo-token: ${{secrets.GITHUB_TOKEN}}
   build:
     runs-on: ubuntu-20.04
     
