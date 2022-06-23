@@ -52,7 +52,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
            name: 'gh-download.py'
-           path: chaithragudimalla/WorkFlow/gh-download.py
+           path: /home/runner/work/WorkFlow/WorkFlow/gh-download.py
 
 
       
