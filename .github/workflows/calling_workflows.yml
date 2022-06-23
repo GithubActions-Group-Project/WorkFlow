@@ -19,7 +19,7 @@ on:
         required: true
         type: string
     secrets:
-       token:
+       repo-token:
         required: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -29,11 +29,11 @@ jobs:
       runs-on: ubuntu-20.04
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       steps:
-        - uses: actions/checkout@v2
+        - uses: actions/checkout@v3
 
       # Runs a single command using the runners shell
         - name: login github registry
           uses: actions/labeler@v4
           with:
-            token: ${{secrets.GIT_CREDENTIALS}}
+            repo-token: ${{secrets.GIT_CREDENTIALS}}
       
