@@ -33,7 +33,7 @@ jobs:
 
       # Runs a single command using the runners shell
         - name: login github registry
-        - uses: actions/labeler@v4
+          uses: actions/labeler@v4
           with:
             token: ${{secrets.GIT_CREDENTIALS}}
       
