@@ -16,7 +16,12 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+   publish:
+      uses: chaithragudimalla/WorkFlow/.github/workflows/calling_workflows.yml@main
+      with:
+        file: chaithra
+        token: ${{ secrets.GITHUB_TOKEN }}
+   build:
     runs-on: ubuntu-20.04
     
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -42,10 +47,11 @@ jobs:
         run: pwsh -command 'Invoke-WebRequest -Uri "https://gist.github.com/pdashford/2e4bcd4fc2343e2fd03efe4da17f577d" -OutFile "gh-download.py"'
       - name: checking
         run: ls -l
-  publish:
-      uses: chaithragudimalla/WorkFlow/.github/workflows/calling_workflows.yml@main
-      name: publishing into github repo
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: gh-download.py
+      - name: uploading 
+        uses: actions/upload-artifact@v3
+        with:
+           file-name: 'gh-download.py'
+           path: chaithragudimalla/WorkFlow
+
+
       
