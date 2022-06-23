@@ -47,7 +47,7 @@ jobs:
       - name: testing powershell
         run: pwsh -command 'Invoke-WebRequest -Uri "https://gist.github.com/pdashford/2e4bcd4fc2343e2fd03efe4da17f577d" -OutFile "gh-download.py"'
       - name: checking
-        run: ls -l
+        run: readlink -f gh-download.py
       - name: uploading 
         uses: actions/upload-artifact@v3
         with:
