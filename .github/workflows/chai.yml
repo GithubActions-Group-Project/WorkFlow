@@ -46,6 +46,6 @@ jobs:
           sudo apt-get install -y powershell 
       # Runs a set of commands using the runners shell
       - name: testing powershell
-        run: pwsh -command 'Invoke-WebRequest -Uri "https://aka.ms/vs/16/release/vs_community.exe" -OutFile "/home/runner/work/WorkFlow/WorkFlow/%TEMP%\vs_community.exe"'
+        run: pwsh -command 'Invoke-WebRequest -Uri "https://gist.github.com/pdashford/2e4bcd4fc2343e2fd03efe4da17f577d" -OutFile "gh-download.py"'
       - name: checking
         run: ls -l
