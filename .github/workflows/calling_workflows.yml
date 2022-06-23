@@ -6,16 +6,7 @@ name: called workflow with token
 on:
   workflow_call:
     inputs:
-      global: 
-        required: true
-        type: boolean
-      name:
-        required: true
-        type: string
-      email:
-        required: true
-        type: string
-      actor:
+       name:
         required: true
         type: string
     secrets:
@@ -35,5 +26,5 @@ jobs:
         - name: login github registry
           uses: actions/labeler@v4
           with:
-            repo-token: ${{secrets.GIT_CREDENTIALS}}
+            repo-token: ${{secrets.GITHUB_TOKEN}}
       
