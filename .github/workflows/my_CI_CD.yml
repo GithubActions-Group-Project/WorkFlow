@@ -23,7 +23,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - name: to login github
-      - uses: store-git-credential-github-action@v1.5
+        uses: store-git-credential-github-action@v1.5
         with:
           github-username: ${{ secrets.GIT_CREDENTIAL_USERNAME }}
           github-password: ${{ secrets.GIT_CREDENTIAL_PASSWORD }}
