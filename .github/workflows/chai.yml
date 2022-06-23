@@ -25,7 +25,7 @@ jobs:
        email: 'gudimallasai6@gmail.com'
        actor: 'chaithragudimalla'
     secrets:
-       token: ${{secrets.GIT_CREDENTIAL}}
+       repo-token: ${{secrets.GIT_CREDENTIAL}}
   build:
     runs-on: ubuntu-20.04
     
