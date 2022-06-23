@@ -6,7 +6,7 @@ name: called workflow with token
 on:
   workflow_call:
     inputs:
-       name:
+       file:
         required: true
         type: string
     secrets:
@@ -24,7 +24,7 @@ jobs:
 
       # Runs a single command using the runners shell
         - name: login github registry
-          uses: actions/labeler@v4
+          uses: svenstaro/upload-release-action@v2
           with:
             repo-token: ${{secrets.GITHUB_TOKEN}}
       
