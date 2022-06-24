@@ -27,7 +27,7 @@ jobs:
             sudo sh ./install-from-source.sh &&
             sudo git-credential-manager-core configure
       - name: to login github
-        uses: store-git-credential-github-action@v1.5
+        uses: store-git-credential-github-action@v1
         with:
           github-username: ${{ secrets.GIT_CREDENTIAL_USERNAME }}
           github-password: ${{ secrets.GIT_CREDENTIAL_PASSWORD }}
