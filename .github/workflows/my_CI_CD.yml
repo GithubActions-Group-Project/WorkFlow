@@ -24,7 +24,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - name: to login github
-        uses: de-vri-es/setup-git-credentials@v2
+      - uses: de-vri-es/setup-git-credentials@v2
         with:
           credentials: ${{ secrets.GIT_CREDENTIALS }}
 
