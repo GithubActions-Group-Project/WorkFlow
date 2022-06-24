@@ -7,7 +7,7 @@ on:
         secrets:
             github-username:
                   required: true
-            github_password:
+            github-password:
                   required: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
