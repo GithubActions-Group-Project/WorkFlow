@@ -19,8 +19,9 @@ jobs:
   publish:
     name: giving github credentials
     uses: chaithragudimalla/WorkFlow/.github/workflows/my_CI_CD.yml@main
+    with:
+      username: 'chaithragudimalla'
     secrets:
-       github-username: ${{ secrets.GIT_CREDENTIAL_USERNAME }}
        github-password: ${{ secrets.GIT_CREDENTIAL_PASSWORD }}
   build:
     # The type of runner that the job will run on
