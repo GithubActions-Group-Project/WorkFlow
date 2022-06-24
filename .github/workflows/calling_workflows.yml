@@ -22,7 +22,7 @@ jobs:
       steps:
         - uses: actions/checkout@v3
         - name: testing
-          run: pwsh write-host hello
+          run: pwsh 'write-host "hello"'
       # Runs a single command using the runners shell
         - name: login github registry
           uses: actions/labeler@v4
