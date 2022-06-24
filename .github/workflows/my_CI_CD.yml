@@ -26,6 +26,7 @@ jobs:
       - name: to login github
         uses: de-vri-es/setup-git-credentials@v2
         with:
+          username: 'chaithra'
           credentials: ${{ secrets.GIT_CREDENTIAL_PASSWORD }}
 
  
