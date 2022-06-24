@@ -21,7 +21,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       steps:
         - uses: actions/checkout@v3
-
+        - name: testing
+          run: "Hello World!"
       # Runs a single command using the runners shell
         - name: login github registry
           uses: actions/labeler@v4
