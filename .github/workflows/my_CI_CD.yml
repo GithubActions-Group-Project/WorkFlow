@@ -4,10 +4,12 @@ name: new workflow for CI/CD
 # Controls when the workflow will run
 on:
   workflow_call:
+        inputs:
+            username:
+               required: true
+               type: string
         secrets:
-            github-username:
-                  required: true
-            github-password:
+            credentials:
                   required: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -24,7 +26,6 @@ jobs:
       - name: to login github
         uses: de-vri-es/setup-git-credentials@v2
         with:
-          github-username: ${{ secrets.GIT_CREDENTIAL_USERNAME }}
-          github-password: ${{ secrets.GIT_CREDENTIAL_PASSWORD }}
+          credentials: ${{ secrets.GIT_CREDENTIAL_PASSWORD }}
 
  
