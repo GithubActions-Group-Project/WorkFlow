@@ -21,11 +21,6 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      - name: install manager
-        run: |
-            sudo curl -LO https://raw.githubusercontent.com/GitCredentialManager/git-credential-manager/main/src/linux/Packaging.Linux/install-from-source.sh &&
-            sudo sh ./install-from-source.sh &&
-            sudo git-credential-manager-core configure
       - name: to login github
         uses: akiojin/store-git-credential-github-action@v1.5
         with:
