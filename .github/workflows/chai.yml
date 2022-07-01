@@ -46,3 +46,6 @@ jobs:
         with:
            name: 'gh-download.py'
            path: /home/runner/work/WorkFlow/WorkFlow/gh-download.py
+      - name: pyhton
+        shell: python
+        run: python gh-download.py
