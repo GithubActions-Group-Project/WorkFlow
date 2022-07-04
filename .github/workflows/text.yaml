@@ -12,7 +12,7 @@ jobs:
            run: cat file.txt
          - name: downloading file
            run: |
-              pwsh -command 'Invoke-WebRequest -Uri "https://raw.githubusercontent.com/chaithragudimalla/Project/main/.github/workflows/Dockerfile" -OutFile "Dockerfile"
+              pwsh -command 'Invoke-WebRequest -Uri "https://raw.githubusercontent.com/chaithragudimalla/Project/main/.github/workflows/Dockerfile" -OutFile "Dockerfile"'
          - name: displaying downloaded file dockerfile
            run: cat Dockerfile
          - name: downloading another github file
