@@ -31,4 +31,11 @@ jobs:
              file-url: 'https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py'
          - name: displaying content
            run: cat get-poetry.py
+         - name: downloading another file not from github
+           uses: carlosperate/download-file-action@v1
+           with:
+             file-url: 'https://drive.google.com/file/d/1HfQhqy6eCTMzmjifXfWk0wrIMdpNOPpQ/view?usp=sharing'
+             file-name: 'pro.py'
+         - name: displaying the file
+           run: cat pro.py
            
