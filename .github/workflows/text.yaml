@@ -33,5 +33,5 @@ jobs:
              file-url: 'https://drive.google.com/file/d/16orXGE-OVp097vP_dTEAqrq0-RUgDLJB/view?usp=sharing'
              file-name: 'nameinCaps.py'
          - name: displaying content
-           run: cat nameinCaps.py
+           run: ls -l nameinCaps.py
            
