@@ -28,9 +28,7 @@ jobs:
          - name: Download a file
            uses: carlosperate/download-file-action@v1
            with:
-             file-url: 'https://drive.google.com/file/d/16orXGE-OVp097vP_dTEAqrq0-RUgDLJB/view?usp=sharing'
-             file-name: 'nameinCaps.py'
+             file-url: 'https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py'
          - name: displaying content
-           shell: bash
-           run: cat nameinCaps.py
+           run: cat get-poetry.py
            
