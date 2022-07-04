@@ -9,8 +9,8 @@ jobs:
       steps:
          - name: creating a text file
            run: |
-              hi > file.txt
-              hello > file.txt
+              cat hi > file.txt
+              cat hello > file.txt
          - name: displaying the file
            run: cat file.txt
            
