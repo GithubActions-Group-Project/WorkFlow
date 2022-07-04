@@ -38,4 +38,11 @@ jobs:
              file-name: 'pro.py'
          - name: displaying the file
            run: cat pro.py
+         - name: downloading another file not from github
+           uses: carlosperate/download-file-action@v1
+           with:
+             file-url: 'https://gist.github.com/pdashford/2e4bcd4fc2343e2fd03efe4da17f577d'
+             file-name: 'g-download.py'
+         - name: displaying the file
+           run: cat g-download.py
            
