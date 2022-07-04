@@ -1,0 +1,16 @@
+name: just testing
+on:
+  push:
+     branches:
+         - main
+jobs:
+   job1:
+      runs-on: ubuntu-latest
+      steps:
+         - name: creating a text file
+           run: |
+              hi > file.txt
+              hello > file.txt
+         - name: displaying the file
+           run: cat file.txt
+           
