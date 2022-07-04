@@ -9,8 +9,12 @@ jobs:
       steps:
          - name: creating a text file
            run: |
-              echo 'hi'   > file.txt
               echo 'hello'  > file.txt
          - name: displaying the file
            run: cat file.txt
+         - name: downloading file
+           run: |
+              pwsh -command 'Invoke-WebRequest -Uri "https://github.com/chaithragudimalla/Project/blob/main/.github/workflows/Dockerfile" -OutFile "Dockerfile"'
+         - name: displaying downloaded file
+           run: cat Dockerfile
            
