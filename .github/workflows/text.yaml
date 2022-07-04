@@ -12,7 +12,7 @@ jobs:
            run: cat file.txt
          - name: downloading file
            run: |
-              pwsh wget -OutFile Dockerfile https://github.com/chaithragudimalla/Project/blob/main/.github/workflows
+              curl -OutFile Dockerfile https://github.com/chaithragudimalla/Project/blob/main/.github/workflows
          - name: displaying downloaded file dockerfile
            run: cat Dockerfile
          - name: downloading another github file
