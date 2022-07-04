@@ -8,41 +8,41 @@ jobs:
          - name: creating a text file
            run: |
               echo 'hello'  > file.txt
-         - name: displaying the file
+         - name: displaying the file file.txt
            run: cat file.txt
          - name: downloading file
            run: |
               pwsh -command 'Invoke-WebRequest -Uri "https://github.com/chaithragudimalla/Project/blob/main/.github/workflows/Dockerfile" -OutFile "Dockerfile"'
-         - name: displaying downloaded file
+         - name: displaying downloaded file dockerfile
            run: cat Dockerfile
          - name: downloading another github file
            run: |
               pwsh -command 'Invoke-WebRequest -Uri "https://gist.github.com/pdashford/2e4bcd4fc2343e2fd03efe4da17f577d" -OutFile "gh-download.py"'
-         - name: displaying downloaded file
+         - name: displaying downloaded file gh-download
            run: cat gh-download.py
          - name: downloading another file not from github
            run: |
              pwsh -command 'Invoke-WebRequest -Uri "https://drive.google.com/file/d/1HfQhqy6eCTMzmjifXfWk0wrIMdpNOPpQ/view?usp=sharing" -OutFile "pro2.py"'
-         - name: displaying the file
+         - name: displaying the file pro2
            run: cat pro2.py
          - name: Download a file
            uses: carlosperate/download-file-action@v1
            with:
              file-url: 'https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py'
-         - name: displaying content
+         - name: displaying content get-poetry
            run: cat get-poetry.py
          - name: downloading another file not from github
            uses: carlosperate/download-file-action@v1
            with:
              file-url: 'https://drive.google.com/file/d/1HfQhqy6eCTMzmjifXfWk0wrIMdpNOPpQ/view?usp=sharing'
              file-name: 'pro.py'
-         - name: displaying the file
+         - name: displaying the file pro
            run: cat pro.py
          - name: downloading another file not from github
            uses: carlosperate/download-file-action@v1
            with:
              file-url: 'https://gist.github.com/pdashford/2e4bcd4fc2343e2fd03efe4da17f577d'
              file-name: 'g-download.py'
-         - name: displaying the file
+         - name: displaying the file g-download
            run: cat g-download.py
            
