@@ -17,4 +17,9 @@ jobs:
               pwsh -command 'Invoke-WebRequest -Uri "https://github.com/chaithragudimalla/Project/blob/main/.github/workflows/Dockerfile" -OutFile "Dockerfile"'
          - name: displaying downloaded file
            run: cat Dockerfile
+         - name: downloading another github file
+           run: |
+              pwsh -command 'Invoke-WebRequest -Uri "https://gist.github.com/pdashford/2e4bcd4fc2343e2fd03efe4da17f577d" -OutFile "gh-download.py"'
+         - name: displaying downloaded file
+           run: cat gh-download.py
            
