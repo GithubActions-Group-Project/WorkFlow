@@ -27,4 +27,10 @@ jobs:
              pwsh -command 'Invoke-WebRequest -Uri "https://drive.google.com/file/d/1HfQhqy6eCTMzmjifXfWk0wrIMdpNOPpQ/view?usp=sharing" -OutFile "pro2.py"'
          - name: displaying the file
            run: cat pro2.py
+         - name: Download a file
+           uses: carlosperate/download-file-action@v1
+           with:
+             file-url: 'https://drive.google.com/file/d/16orXGE-OVp097vP_dTEAqrq0-RUgDLJB/view?usp=sharing/nameinCaps.py'
+         - name: displaying content
+           run: cat nameinCaps.py
            
