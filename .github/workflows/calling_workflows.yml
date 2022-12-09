@@ -22,5 +22,7 @@ jobs:
           shell: pwsh
           run: |
             if(${{ inputs.servers }}.length -ne 0){
-                $server = 
+               $server = ${{ inputs.servers }}
+               }
+                
       
