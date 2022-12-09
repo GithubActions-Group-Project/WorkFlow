@@ -6,24 +6,21 @@ name: called workflow with token
 on:
   workflow_call:
     inputs:
-       file:
+      file:
         required: true
         type: string
-    secrets:
-       repo-token:
+      servers:
         required: true
+        type: string
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   publish:
       runs-on: ubuntu-20.04
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       steps:
         - uses: actions/checkout@v3
-      # Runs a single command using the runners shell
         - name: login github registry
-          uses: actions/labeler@v4
-          with:
-            repo-token: ${{secrets.GITHUB_TOKEN}}
+          shell: pwsh
+          run: |
+            if(${{ inputs.servers }}.length -ne 0){
+                $server = 
       
