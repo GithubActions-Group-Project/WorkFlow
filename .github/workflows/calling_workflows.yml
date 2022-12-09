@@ -21,7 +21,7 @@ jobs:
         - name: login github registry
           shell: pwsh
           run: |
-            if(${{ inputs.servers }}.length -ne 0){
+            if (${{ inputs.servers }}.length -ne 0) {
                $server = ${{ inputs.servers }}
                }
                 
