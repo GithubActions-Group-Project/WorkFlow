@@ -1,0 +1,158 @@
+name: CICD Pipeline  
+on: 
+  push:
+    branches: 
+    - main 
+    - master
+    - develop
+    - 'feature/**'
+    - 'feature*' 
+    - 'hotfix'
+  pull_request:
+    types: [synchronize]
+    branches: 
+     - 'hotfix*'
+     - develop
+     - master
+     - main
+     
+jobs:
+  Dev_Compile:
+    if: github.event.ref != 'refs/heads/main' && github.event.ref != 'refs/heads/master' && github.event.ref != 'refs/heads/develop'
+    uses: Enterprise-Devops/Devopstemplates/.github/workflows/Java-Build.yml@main
+    with:
+      CI_IMAGE: ${{vars.JAVA11_NODE18_BT_IMAGE }}
+      Build_Command: |
+          cd wkbui
+          npm install -g @angular/cli@14.0.0
+          npm install
+          ng build --configuration development
+          cd ..        
+          mvn -Pdev clean install  
+      Artifact_path: "./*"                       
+      Artifact_Key: "${{ github.sha }}-${{github.run_id}}"
+  Stage_Compile:
+    if: github.event.ref == 'refs/heads/develop'
+    uses: Enterprise-Devops/Devopstemplates/.github/workflows/Java-Build.yml@main
+    with:
+      CI_IMAGE: ${{vars.JAVA11_NODE18_BT_IMAGE }}
+      Build_Command: |
+          cd wkbui
+          npm install -g @angular/cli@14.0.0
+          npm install
+          ng build --configuration stage
+          cd ..        
+          mvn -Pstage clean install  
+      Artifact_path: "./*"                       
+      Artifact_Key: "${{ github.sha }}-${{github.run_id}}" 
+      
+  Prod_Compile:
+    if: github.event.ref == 'refs/heads/master' || github.event.ref == 'refs/heads/main'
+    uses: Enterprise-Devops/Devopstemplates/.github/workflows/Java-Build.yml@main
+    with:
+      CI_IMAGE: ${{vars.JAVA11_NODE18_BT_IMAGE }}
+      Build_Command: |
+          cd wkbui
+          npm install -g @angular/cli@14.0.0
+          npm install
+          ng build --configuration production
+          cd ..        
+          mvn -Pprod clean install  
+      Artifact_path: "./*"                       
+      Artifact_Key: "${{ github.sha }}-${{github.run_id}}" 
+  
+      
+  PublishArtifacts:
+    needs: [ Dev_Compile,Stage_Compile,Prod_Compile ]
+    if: success('Dev_Compile') || success('Stage_Compile') || success('Prod_Compile')
+    uses: Enterprise-Devops/Devopstemplates/.github/workflows/uploadArtifact.yml@main
+    with:
+      CI_IMAGE: ${{ vars.DOCKER_PWSH_IMAGE }}
+      File_path: "./wkbear/target/*.ear"           
+      Artifact_path: "./*"                       
+      Artifact_Key: "${{ github.sha }}-${{github.run_id}}"  
+      retention-days: 30
+  
+  Code_Analysis:
+     needs: [ PublishArtifacts ]
+     if: (success('PublishArtifacts')) 
+     uses: Enterprise-Devops/Devopstemplates/.github/workflows/maven_sonarqube_with_cache.yml@main
+     with:
+       BuildTool: "maven"
+       CI_IMAGE: ${{vars.SONAR_IMAGE }}
+       ParentPomPath: "null"
+       Artifact_path: "./*"                       
+       Artifact_Key: "${{ github.sha }}-${{github.run_id}}"  
+     secrets:    
+        sonar_host_url: ${{ secrets.SONAR_HOST_URL }}
+        sonar_login: ${{ secrets.SONAR_LOGIN_TOKEN }}
+        
+  QualityGates:
+     needs: [ Code_Analysis ]
+     if: success('Code_Analysis')
+     uses: Enterprise-Devops/Devopstemplates/.github/workflows/QualityGate.yml@main
+     with:
+       CI_Image: ${{ vars.SONAR_QUALITYGATES_IMAGE }}
+     secrets:    
+       sonar_host_url: ${{ secrets.SONAR_HOST_URL }}
+       sonar_login: ${{ secrets.SONAR_LOGIN_TOKEN }}  
+       
+  ChangeRequest_validation:
+     needs: [ QualityGates ]
+     if: (github.event.ref == 'refs/heads/master' || github.event.ref == 'refs/heads/main') && (success('QualityGates'))
+     uses: Enterprise-Devops/Devopstemplates/.github/workflows/CRValidation.yml@main
+     with:
+       CD_IMAGE: ${{ vars.SONAR_QUALITYGATES_IMAGE }}
+       changeRequestNo: "CHG0771552"
+       AMSID: "746"
+  CodeQuality:
+    needs: [QualityGates]
+    if: github.event.ref == 'refs/heads/develop' && success('QualityGates') 
+    uses: Enterprise-Devops/Devopstemplates/.github/workflows/cxscan_oauthtoken.yml@main
+    with:    
+     CI_IMAGE: ${{vars.CX_IMAGE }}
+     SOURCE_DIR: "."
+    secrets: 
+      cx_base_url: ${{ secrets.CX_BASE_URL }}
+      cx_tenant: ${{ secrets.CX_TENANT }}
+      cx_client_id: ${{ secrets.CX_CLIENT_ID }}
+      cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
+       
+  Dev-Server-Deploy:
+     needs: [ QualityGates ]
+     if: (github.event.ref != 'refs/heads/main' && github.event.ref != 'refs/heads/master' && github.event.ref != 'refs/heads/develop') && (success('QualityGates'))
+     uses: Enterprise-Devops/Devopstemplates/.github/workflows/DeployWAS.yml@main
+     with: 
+      Artifact_path: "./*"                       
+      Artifact_Key: "${{ github.sha }}-${{github.run_id}}"  
+      env: "dev"
+      PipelineconfigYmlPath: "pipelineconfig.yml"
+     secrets:
+        user: ${{ secrets.USER }}
+        pass: ${{ secrets.PASS }}
+      
+  Stage-Server-Deploy:
+     needs: [ CodeQuality ]
+     if: (github.event.ref == 'refs/heads/develop') && (success('CodeQuality'))
+     uses: Enterprise-Devops/Devopstemplates/.github/workflows/DeployWAS.yml@main
+     with: 
+      Artifact_path: "./*"                       
+      Artifact_Key: "${{ github.sha }}-${{github.run_id}}"  
+      env: "stage"
+      PipelineconfigYmlPath: "pipelineconfig.yml"
+     secrets:
+        user: ${{ secrets.USER }}
+        pass: ${{ secrets.PASS }}
+        
+  Prod-Deploy:
+     needs: [ ChangeRequest_validation ]
+     if: (github.event.ref == 'refs/heads/master' || github.event.ref == 'refs/heads/main') && (success('ChangeRequest_validation'))
+     uses: Enterprise-Devops/Devopstemplates/.github/workflows/DeployWAS.yml@main
+     with: 
+      Artifact_path: "./*"                       
+      Artifact_Key: "${{ github.sha }}-${{github.run_id}}"  
+      env: "prod"
+      PipelineconfigYmlPath: "pipelineconfig.yml"
+     secrets:
+        user: ${{ secrets.USER }}
+        pass: ${{ secrets.PASS }}
